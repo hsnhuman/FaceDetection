@@ -1,0 +1,12 @@
+.Tilt {
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: linear-gradient(
+    90deg,
+    rgba(222, 149, 181, 1) 27%,
+    rgba(119, 152, 190, 1) 92%
+  );
+  opacity: 100%;
+  z-index: +1;
+}

@@ -1,0 +1,51 @@
+.form {
+  background: linear-gradient(
+    45deg,
+    #ad5eac 0%,
+    #ad5eac 5%,
+    transparent 5%,
+    transparent 10%,
+    #ad5eac 10%,
+    #ad5eac 15%,
+    transparent 15%,
+    transparent 20%,
+    #ad5eac 20%,
+    #ad5eac 25%,
+    transparent 25%,
+    transparent 30%,
+    #ad5eac 30%,
+    #ad5eac 35%,
+    transparent 35%,
+    transparent 40%,
+    #ad5eac 40%,
+    #ad5eac 45%,
+    transparent 45%,
+    transparent 50%,
+    #ad5eac 50%,
+    #ad5eac 55%,
+    transparent 55%,
+    transparent 60%,
+    #ad5eac 60%,
+    #ad5eac 65%,
+    transparent 65%,
+    transparent 70%,
+    #ad5eac 70%,
+    #ad5eac 75%,
+    transparent 70%,
+    transparent 80%,
+    #ad5eac 80%,
+    #ad5eac 85%,
+    transparent 85%,
+    transparent 90%,
+    #ad5eac 90%,
+    #ad5eac 95%,
+    transparent 95%
+  );
+  background-size: 2em 2em;
+  background-color: linear-gradient(
+    90deg,
+    rgba(222, 149, 181, 1) 27%,
+    rgba(119, 152, 190, 1) 92%
+  );
+  opacity: 0.65;
+}
