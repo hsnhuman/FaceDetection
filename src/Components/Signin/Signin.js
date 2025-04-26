@@ -1,11 +1,13 @@
 import React from "react";
 import Cookies from "js-cookie";
+
 class Signin extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       signinEmail: "",
       signinPassword: "",
+      rememberMe: false, // Add state for Remember Me
     };
   }
 
@@ -17,8 +19,12 @@ class Signin extends React.Component {
     this.setState({ signinPassword: event.target.value });
   };
 
+  onRememberMeChange = (event) => {
+    this.setState({ rememberMe: event.target.checked });
+  };
+
   onsubmitSignin = () => {
-    fetch("https://faceds.liara.run/Signin", {
+    fetch("http://localhost:5000/Signin", {
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -28,15 +34,17 @@ class Signin extends React.Component {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log("Received from backend:", data); // ✅ Debugging step
-        if (data.token) {
-          Cookies.set("token", data.token, { expires: 7 }); // Store token
+        console.log("Received from backend:", data); // Debugging step
+
+        if (data.token && this.state.rememberMe) {
+          Cookies.set("token", data.token, { expires: 7 }); // Store token ONLY if Remember Me is checked
+        } else if (data.token && !this.state.rememberMe) {
+          console.log("Remember Me not selected; token will not be stored."); // Log for debugging
         } else {
           console.error("Token not found in response.");
         }
 
         if (data.success && data.user && data.user.id) {
-          // ✅ Check user inside response
           this.props.loaduser(data.user);
           this.props.onroutechange("home");
         } else {
@@ -81,6 +89,12 @@ class Signin extends React.Component {
                   name="Password"
                   id="Password"
                 />
+              </div>
+              <div className="mv3">
+                <label className="db fw6 lh-copy f6">
+                  <input type="checkbox" onChange={this.onRememberMeChange} />{" "}
+                  Remember Me
+                </label>
               </div>
             </fieldset>
             <div className="">

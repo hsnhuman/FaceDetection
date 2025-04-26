@@ -28,10 +28,11 @@ class App extends Component {
     super();
     this.state = initialstate;
   }
+
   componentDidMount() {
     const token = Cookies.get("token");
     if (token) {
-      fetch("https://faceds.liara.run/home", {
+      fetch("http://localhost:5000/home", {
         method: "GET",
         credentials: "include",
         headers: { "Content-Type": "application/json" },
@@ -64,7 +65,7 @@ class App extends Component {
     });
   };
   finddata = () => {
-    fetch("https://faceds.liara.run/home", {
+    fetch("http://localhost:5000/home", {
       method: "GET",
       credentials: "include", // ✅ Send cookies with the request
       headers: {
@@ -112,7 +113,7 @@ class App extends Component {
     this.setState({ imageUrl: this.state.input });
 
     // Update image count in backend
-    fetch("hhttps://faceds.liara.run/image", {
+    fetch("http://localhost:5000/image", {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ id: String(this.state.user.id) }),
@@ -126,7 +127,7 @@ class App extends Component {
       .catch((err) => console.error("Error updating image count:", err));
 
     // Make Clarifai API request through backend proxy
-    fetch("https://faceds.liara.run/clarifai", {
+    fetch("http://localhost:5000/clarifai", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ imageUrl: this.state.input }),
@@ -160,8 +161,7 @@ class App extends Component {
       if (token) {
         this.setState({ isSignedIn: true, route: "home" });
       } else {
-        alert("Session expired. Please sign in again.");
-        this.setState({ isSignedIn: false, route: "Signin" });
+        this.setState({ isSignedIn: true, route: "home" });
       }
     } else {
       this.setState({ route });

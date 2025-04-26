@@ -44,7 +44,7 @@ class Register extends React.Component {
 
   onsubmitRegister = () => {
     if (this.validateForm()) {
-      fetch("https://faceds.liara.run/Register", {
+      fetch("http://localhost:5000/Register", {
         method: "post",
         headers: { "content-type": "application/json" },
         body: JSON.stringify({
@@ -55,8 +55,6 @@ class Register extends React.Component {
       })
         .then((response) => response.json())
         .then((data) => {
-          console.log("Received from backend:", data); // ✅ Debugging step
-
           if (data.token) {
             Cookies.set("token", data.token, { expires: 7 }); // ✅ Store token
           } else {
